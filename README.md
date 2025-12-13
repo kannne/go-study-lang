@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# GoLang - AI 기반 외국어 학습 플랫폼
 
-## Getting Started
+> "외국어 공부하러 가자" - Go Stady Language
 
-First, run the development server:
+## 📖 프로젝트 소개
+
+GoLang은 LLM을 활용한 외국어 학습 웹 애플리케이션입니다.
+
+### 주요 기능
+- **독해 연습**: Gemini API로 맞춤형 외국어 지문 생성 + 문제 풀이
+- **작문 첨삭**: AI 기반 외국어 작문 피드백 및 문법 교정
+- **어휘 학습**: 간격 반복 알고리즘 기반 플래시카드 복습 시스템
+
+## 🛠️ 기술 스택
+
+- **Frontend & Backend**: Next.js 14 (App Router) + TypeScript
+- **Styling**: Tailwind CSS 3.4.1 + shadcn/ui
+- **Database**: PostgreSQL + Prisma ORM
+- **LLM**: Gemini 2.5 Pro / Flash
+- **일본어 처리**: Kuroshiro, wanakana
+- **Deployment**: GCP Compute Engine + Docker Compose
+
+## 🚀 시작하기
+
+### 개발 서버 실행
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+[http://localhost:3000](http://localhost:3000)에서 확인할 수 있습니다.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 환경 변수 설정
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+`.env.local` 파일을 생성하고 다음 내용을 추가하세요:
 
-## Learn More
+```env
+DATABASE_URL="postgresql://..."
+GEMINI_API_KEY="your-gemini-api-key"
+```
 
-To learn more about Next.js, take a look at the following resources:
+## 📂 프로젝트 구조
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+golang/
+├── src/
+│   ├── app/                 # Next.js App Router 페이지
+│   ├── components/          # React 컴포넌트
+│   │   └── ui/              # shadcn/ui 컴포넌트
+│   └── lib/                 # 유틸리티 함수
+├── prisma/                  # Prisma 스키마 및 마이그레이션
+└── public/                  # 정적 파일
+```
