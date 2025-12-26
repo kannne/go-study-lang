@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Noto_Sans_JP } from "next/font/google";
 import "./globals.css";
+import Header from "@/components/Header";
 
 const notoSansJp = Noto_Sans_JP({
   subsets: ["latin"],
@@ -30,7 +31,10 @@ export default function RootLayout({
         />
       </head>
       <body className={`${notoSansJp.variable} font-sans antialiased`}>
-        {children}
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-purple-50/30 to-blue-50/30">
+          <Header />
+          {children}
+        </div>
       </body>
     </html>
   );

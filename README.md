@@ -43,11 +43,10 @@ GEMINI_API_KEY="your-gemini-api-key"
 
 ```
 golang/
-├── src/
-│   ├── app/                 # Next.js App Router 페이지
-│   ├── components/          # React 컴포넌트
-│   │   └── ui/              # shadcn/ui 컴포넌트
-│   └── lib/                 # 유틸리티 함수
+├── app/                 # Next.js App Router 페이지
+├── components/          # React 컴포넌트
+│   └── ui/              # shadcn/ui 컴포넌트
+└── lib/                 # 유틸리티 함수
 ├── prisma/                  # Prisma 스키마 및 마이그레이션
 └── public/                  # 정적 파일
 ```

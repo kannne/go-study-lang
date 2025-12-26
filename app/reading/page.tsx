@@ -2,11 +2,11 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowLeft, BookOpen, Play, RotateCw, Volume2, CheckCircle2 } from "lucide-react";
+import { BookOpen, RotateCw, Volume2, CheckCircle2 } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
-export default function ReadingNewPage() {
+export default function ReadingPage() {
   const [isGenerating, setIsGenerating] = useState(false);
   const [hasPassage, setHasPassage] = useState(false);
 
@@ -62,49 +62,18 @@ export default function ReadingNewPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#FAF9F7] via-[#FDFCFA] to-[#F5F3F0]">
-      {/* Subtle background pattern */}
-      <div
-        className="fixed inset-0 opacity-[0.015] pointer-events-none"
-        style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, #2C3338 1px, transparent 0)`,
-          backgroundSize: '40px 40px',
-        }}
-      />
-
-      {/* Header */}
-      <header className="sticky top-0 z-50 backdrop-blur-xl bg-white/70 border-b border-neutral-200/50">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center gap-4">
-              <Link
-                href="/"
-                className="flex items-center gap-2 text-[#6B7280] hover:text-[#2C3338] transition-colors"
-              >
-                <ArrowLeft className="w-5 h-5" />
-                <span className="text-sm font-medium">홈으로</span>
-              </Link>
-            </div>
-
-            <div className="flex items-center gap-3">
-              <span className="text-sm text-[#6B7280]">독해 연습</span>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 pb-24">
+    <main className="max-w-7xl mx-auto px-6 py-12 pb-24">
         {/* Page Title */}
         <section className="mb-12">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#5B7C99] to-[#6B8BA3] flex items-center justify-center shadow-lg">
-              <BookOpen className="w-6 h-6 text-white" strokeWidth={2} />
+          <div className="flex items-center gap-4 mb-4">
+            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-indigo-500 to-blue-600 flex items-center justify-center shadow-xl">
+              <BookOpen className="w-8 h-8 text-white" strokeWidth={2.5} />
             </div>
             <div>
-              <h1 className="text-4xl font-bold text-[#2C3338] tracking-tight">
+              <h1 className="text-4xl font-black text-gray-900 tracking-tight">
                 일본어 독해 연습
               </h1>
-              <p className="text-[#6B7280] mt-1">
+              <p className="text-gray-600 mt-1 text-lg">
                 AI가 생성하는 맞춤형 지문으로 독해 실력을 향상하세요
               </p>
             </div>
@@ -113,25 +82,25 @@ export default function ReadingNewPage() {
 
         {/* Generator Form */}
         <section className="mb-12">
-          <Card className="border-0 shadow-sm bg-white/80 backdrop-blur-sm">
+          <Card className="border border-purple-100/50 shadow-lg bg-white">
             <CardHeader>
-              <CardTitle className="text-xl font-semibold text-[#2C3338]">
+              <CardTitle className="text-xl font-bold text-gray-900">
                 지문 생성하기
               </CardTitle>
-              <CardDescription className="text-[#6B7280]">
+              <CardDescription className="text-gray-600">
                 학습하고 싶은 주제와 난이도를 선택하세요
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               {/* Topic */}
               <div>
-                <label className="block text-sm font-medium text-[#2C3338] mb-2">
+                <label className="block text-sm font-bold text-gray-700 mb-2">
                   주제 (Topic)
                 </label>
                 <input
                   type="text"
                   placeholder="예: 교토 관광, 일본 문화, 계절, 음식"
-                  className="w-full px-4 py-3 rounded-lg border border-neutral-200 focus:border-[#5B7C99] focus:ring-2 focus:ring-[#5B7C99]/20 outline-none transition-all bg-white text-[#2C3338] placeholder:text-[#9CA3AF]"
+                  className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/20 outline-none transition-all bg-white text-gray-900 placeholder:text-gray-400"
                 />
               </div>
 
@@ -139,10 +108,10 @@ export default function ReadingNewPage() {
               <div className="grid md:grid-cols-2 gap-6">
                 {/* Difficulty */}
                 <div>
-                  <label className="block text-sm font-medium text-[#2C3338] mb-2">
+                  <label className="block text-sm font-bold text-gray-700 mb-2">
                     난이도 (Difficulty Level)
                   </label>
-                  <select defaultValue="N2" className="w-full px-4 py-3 rounded-lg border border-neutral-200 focus:border-[#5B7C99] focus:ring-2 focus:ring-[#5B7C99]/20 outline-none transition-all bg-white text-[#2C3338]">
+                  <select defaultValue="N2" className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/20 outline-none transition-all bg-white text-gray-900">
                     <option>N5 (초급)</option>
                     <option>N4 (초중급)</option>
                     <option>N3 (중급)</option>
@@ -153,10 +122,10 @@ export default function ReadingNewPage() {
 
                 {/* Length */}
                 <div>
-                  <label className="block text-sm font-medium text-[#2C3338] mb-2">
+                  <label className="block text-sm font-bold text-gray-700 mb-2">
                     길이 (Length)
                   </label>
-                  <select defaultValue="짧음 (100-150 단어)" className="w-full px-4 py-3 rounded-lg border border-neutral-200 focus:border-[#5B7C99] focus:ring-2 focus:ring-[#5B7C99]/20 outline-none transition-all bg-white text-[#2C3338]">
+                  <select defaultValue="짧음 (100-150 단어)" className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/20 outline-none transition-all bg-white text-gray-900">
                     <option>짧음 (100-150 단어)</option>
                     <option>중간 (150-250 단어)</option>
                     <option>김 (250-350 단어)</option>
@@ -169,7 +138,7 @@ export default function ReadingNewPage() {
                 <Button
                   onClick={handleGenerate}
                   disabled={isGenerating}
-                  className="flex-1 bg-gradient-to-r from-[#5B7C99] to-[#6B8BA3] hover:from-[#4B6C89] hover:to-[#5B7C99] text-white shadow-sm hover:shadow-md transition-all py-6 text-base font-medium"
+                  className="flex-1 bg-gradient-to-r from-indigo-500 to-blue-600 hover:from-indigo-600 hover:to-blue-700 text-white shadow-lg hover:shadow-xl transition-all py-6 text-base font-bold"
                 >
                   {isGenerating ? (
                     <>
@@ -188,7 +157,7 @@ export default function ReadingNewPage() {
                   onClick={handleRandom}
                   disabled={isGenerating}
                   variant="outline"
-                  className="px-8 border-2 border-[#5B7C99] text-[#5B7C99] hover:bg-[#5B7C99] hover:text-white transition-all py-6 text-base font-medium"
+                  className="px-8 border-2 border-indigo-500 text-indigo-600 hover:bg-indigo-500 hover:text-white transition-all py-6 text-base font-bold"
                 >
                   <RotateCw className="w-5 h-5" />
                 </Button>
@@ -201,25 +170,25 @@ export default function ReadingNewPage() {
         {hasPassage && (
           <>
             <section className="mb-12">
-              <Card className="border-0 shadow-sm bg-white/80 backdrop-blur-sm">
+              <Card className="border border-purple-100/50 shadow-lg bg-white">
                 <CardHeader>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <CardTitle className="text-2xl font-semibold text-[#2C3338]">
+                      <CardTitle className="text-2xl font-bold text-gray-900">
                         {mockPassage.title}
                       </CardTitle>
-                      <span className="px-3 py-1 bg-[#5B7C99]/10 text-[#5B7C99] text-sm font-medium rounded-full">
+                      <span className="px-4 py-1.5 bg-gradient-to-r from-indigo-100 to-purple-100 text-indigo-700 text-sm font-bold rounded-full">
                         {mockPassage.level}
                       </span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <span className="text-sm text-[#6B7280]">
-                        단어 수: <span className="font-semibold text-[#2C3338]">{mockPassage.wordCount}</span>
+                      <span className="text-sm text-gray-600">
+                        단어 수: <span className="font-bold text-gray-900">{mockPassage.wordCount}</span>
                       </span>
                       <Button
                         size="sm"
                         variant="ghost"
-                        className="text-[#5B7C99] hover:text-[#4B6C89] hover:bg-[#5B7C99]/10"
+                        className="text-indigo-600 hover:text-indigo-700 hover:bg-indigo-50"
                       >
                         <Volume2 className="w-4 h-4 mr-2" />
                         음성 듣기
@@ -229,7 +198,7 @@ export default function ReadingNewPage() {
                 </CardHeader>
                 <CardContent>
                   <div className="prose prose-lg max-w-none">
-                    <div className="text-[#2C3338] leading-loose text-lg space-y-4">
+                    <div className="text-gray-900 leading-loose text-lg space-y-4">
                       {mockPassage.content.split('\n\n').map((paragraph, idx) => (
                         <p key={idx} className="mb-4 last:mb-0">
                           {paragraph}
@@ -244,19 +213,19 @@ export default function ReadingNewPage() {
             {/* Reading Comprehension Questions */}
             <section>
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#5B7C99]/20 to-[#5B7C99]/10 flex items-center justify-center">
-                  <CheckCircle2 className="w-5 h-5 text-[#5B7C99]" strokeWidth={2} />
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-100 to-purple-100 flex items-center justify-center">
+                  <CheckCircle2 className="w-6 h-6 text-indigo-600" strokeWidth={2.5} />
                 </div>
-                <h2 className="text-2xl font-semibold text-[#2C3338]">
+                <h2 className="text-2xl font-bold text-gray-900">
                   독해 문제
                 </h2>
               </div>
 
               <div className="space-y-8">
                 {mockQuestions.map((question, qIdx) => (
-                  <Card key={question.id} className="border-0 shadow-sm bg-white/80 backdrop-blur-sm">
+                  <Card key={question.id} className="border border-purple-100/50 shadow-lg bg-white">
                     <CardHeader>
-                      <CardTitle className="text-lg font-semibold text-[#2C3338]">
+                      <CardTitle className="text-lg font-bold text-gray-900">
                         Question {qIdx + 1}: {question.question}
                       </CardTitle>
                     </CardHeader>
@@ -265,13 +234,13 @@ export default function ReadingNewPage() {
                         {question.options.map((option, optIdx) => (
                           <button
                             key={optIdx}
-                            className="w-full text-left p-4 rounded-xl bg-gradient-to-br from-neutral-50/50 to-white/50 hover:from-[#5B7C99]/5 hover:to-[#5B7C99]/10 border border-neutral-200/50 hover:border-[#5B7C99]/30 transition-all group"
+                            className="w-full text-left p-4 rounded-xl bg-gray-50 hover:bg-indigo-50 border-2 border-gray-200 hover:border-indigo-300 transition-all group"
                           >
                             <div className="flex items-start gap-3">
-                              <span className="flex-shrink-0 w-8 h-8 rounded-lg bg-white border border-neutral-200 group-hover:border-[#5B7C99] group-hover:bg-[#5B7C99] group-hover:text-white flex items-center justify-center font-semibold text-sm transition-all">
+                              <span className="flex-shrink-0 w-8 h-8 rounded-lg bg-white border-2 border-gray-300 group-hover:border-indigo-500 group-hover:bg-indigo-500 group-hover:text-white flex items-center justify-center font-bold text-sm transition-all">
                                 {String.fromCharCode(65 + optIdx)}
                               </span>
-                              <span className="flex-1 text-[#2C3338] leading-relaxed pt-1">
+                              <span className="flex-1 text-gray-900 leading-relaxed pt-1 font-medium">
                                 {option}
                               </span>
                             </div>
@@ -286,7 +255,7 @@ export default function ReadingNewPage() {
               {/* Submit Button */}
               <div className="mt-8">
                 <Button
-                  className="w-full md:w-auto md:min-w-[300px] bg-gradient-to-r from-[#5B7C99] to-[#6B8BA3] hover:from-[#4B6C89] hover:to-[#5B7C99] text-white shadow-sm hover:shadow-md transition-all py-6 text-base font-medium"
+                  className="w-full md:w-auto md:min-w-[300px] bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white shadow-lg hover:shadow-xl transition-all py-6 text-base font-bold"
                 >
                   <CheckCircle2 className="w-5 h-5 mr-2" />
                   답안 제출하기
@@ -295,7 +264,6 @@ export default function ReadingNewPage() {
             </section>
           </>
         )}
-      </main>
-    </div>
+    </main>
   );
 }
