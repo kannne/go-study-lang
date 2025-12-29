@@ -1,15 +1,19 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Bell, User, Moon, Sun, LogOut, Settings, BookOpen, PenLine, Library } from "lucide-react";
+import { Bell, User, Moon, Sun, LogOut, Settings, BookOpen, PenLine, Library, Languages } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { useTheme } from "@/contexts/ThemeContext";
 
 export default function Header() {
   const [userDropdown, setUserDropdown] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [languageDropdown, setLanguageDropdown] = useState(false);
   const pathname = usePathname();
+  const { language, setLanguage, getLanguageLabel } = useLanguage();
+  const { theme, toggleTheme } = useTheme();
 
   const getActiveTab = () => {
     if (pathname.startsWith("/reading")) return "reading";
@@ -21,7 +25,7 @@ export default function Header() {
   const activeTab = getActiveTab();
 
   return (
-    <header className="sticky top-0 z-50 backdrop-blur-xl bg-white/80 border-b border-purple-100/50 shadow-sm">
+    <header className="sticky top-0 z-50 backdrop-blur-xl bg-white/80 dark:bg-gray-900/80 border-b border-purple-100/50 dark:border-gray-700 shadow-sm">
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center">
@@ -36,8 +40,8 @@ export default function Header() {
             href="/reading"
             className={`flex items-center gap-2 px-1 py-3 text-lg font-extrabold border-b-3 transition-all ${
               activeTab === "reading"
-                ? "text-indigo-600 border-indigo-600"
-                : "text-gray-700 border-transparent hover:text-indigo-600 hover:border-indigo-300"
+                ? "text-indigo-600 dark:text-indigo-400 border-indigo-600 dark:border-indigo-400"
+                : "text-gray-700 dark:text-gray-300 border-transparent hover:text-indigo-600 dark:hover:text-indigo-400 hover:border-indigo-300"
             }`}
           >
             <BookOpen className="w-5 h-5" />
@@ -47,8 +51,8 @@ export default function Header() {
             href="/writing"
             className={`flex items-center gap-2 px-1 py-3 text-lg font-extrabold border-b-3 transition-all ${
               activeTab === "writing"
-                ? "text-purple-600 border-purple-600"
-                : "text-gray-700 border-transparent hover:text-purple-600 hover:border-purple-300"
+                ? "text-purple-600 dark:text-purple-400 border-purple-600 dark:border-purple-400"
+                : "text-gray-700 dark:text-gray-300 border-transparent hover:text-purple-600 dark:hover:text-purple-400 hover:border-purple-300"
             }`}
           >
             <PenLine className="w-5 h-5" />
@@ -58,8 +62,8 @@ export default function Header() {
             href="/vocabulary"
             className={`flex items-center gap-2 px-1 py-3 text-lg font-extrabold border-b-3 transition-all ${
               activeTab === "vocabulary"
-                ? "text-blue-600 border-blue-600"
-                : "text-gray-700 border-transparent hover:text-blue-600 hover:border-blue-300"
+                ? "text-blue-600 dark:text-blue-400 border-blue-600 dark:border-blue-400"
+                : "text-gray-700 dark:text-gray-300 border-transparent hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-300"
             }`}
           >
             <Library className="w-5 h-5" />
@@ -69,6 +73,62 @@ export default function Header() {
 
         {/* Right Actions */}
         <div className="flex items-center gap-3">
+          {/* Language Switcher */}
+          <div className="relative">
+            <button
+              onClick={() => {
+                setLanguageDropdown(!languageDropdown);
+                setUserDropdown(false);
+              }}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg hover:bg-purple-50 transition-colors group"
+            >
+              <Languages className="w-4 h-4 text-gray-600 group-hover:text-purple-600 transition-colors" />
+              <span className="text-sm font-semibold text-gray-700 group-hover:text-purple-600 transition-colors">
+                {getLanguageLabel()}
+              </span>
+            </button>
+
+            {/* Language Dropdown */}
+            {languageDropdown && (
+              <div className="absolute right-0 mt-2 w-36 bg-white rounded-xl shadow-2xl border border-purple-100 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
+                <div className="p-1">
+                  <button
+                    onClick={() => {
+                      setLanguage("japanese");
+                      setLanguageDropdown(false);
+                    }}
+                    className={`w-full flex items-center justify-between px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
+                      language === "japanese"
+                        ? "bg-indigo-50 text-indigo-700"
+                        : "text-gray-700 hover:bg-purple-50"
+                    }`}
+                  >
+                    <span>日本語</span>
+                    {language === "japanese" && (
+                      <div className="w-1.5 h-1.5 rounded-full bg-indigo-600" />
+                    )}
+                  </button>
+                  <button
+                    onClick={() => {
+                      setLanguage("english");
+                      setLanguageDropdown(false);
+                    }}
+                    className={`w-full flex items-center justify-between px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
+                      language === "english"
+                        ? "bg-indigo-50 text-indigo-700"
+                        : "text-gray-700 hover:bg-purple-50"
+                    }`}
+                  >
+                    <span>English</span>
+                    {language === "english" && (
+                      <div className="w-1.5 h-1.5 rounded-full bg-indigo-600" />
+                    )}
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+
           {/* Notifications */}
           <button className="relative p-2 rounded-lg hover:bg-purple-50 transition-colors group">
             <Bell className="w-5 h-5 text-gray-600 group-hover:text-purple-600 transition-colors" />
@@ -77,20 +137,23 @@ export default function Header() {
 
           {/* Theme Toggle */}
           <button
-            onClick={() => setIsDarkMode(!isDarkMode)}
-            className="p-2 rounded-lg hover:bg-purple-50 transition-colors group"
+            onClick={toggleTheme}
+            className="p-2 rounded-lg hover:bg-purple-50 dark:hover:bg-gray-700 transition-colors group"
           >
-            {isDarkMode ? (
-              <Sun className="w-5 h-5 text-gray-600 group-hover:text-purple-600 transition-colors" />
+            {theme === "dark" ? (
+              <Sun className="w-5 h-5 text-gray-600 dark:text-gray-300 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors" />
             ) : (
-              <Moon className="w-5 h-5 text-gray-600 group-hover:text-purple-600 transition-colors" />
+              <Moon className="w-5 h-5 text-gray-600 dark:text-gray-300 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors" />
             )}
           </button>
 
           {/* User Dropdown */}
           <div className="relative">
             <button
-              onClick={() => setUserDropdown(!userDropdown)}
+              onClick={() => {
+                setUserDropdown(!userDropdown);
+                setLanguageDropdown(false);
+              }}
               className="flex items-center gap-2 p-2 rounded-lg hover:bg-purple-50 transition-colors group"
             >
               <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-md">
