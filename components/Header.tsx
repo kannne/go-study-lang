@@ -170,13 +170,17 @@ export default function Header() {
                 </div>
                 <div className="p-1">
                   <Link href="/mypage">
-                    <button className="w-full flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-purple-50 rounded-lg transition-colors">
+                    <button
+                      onClick={() => setUserDropdown(false)} 
+                      className="w-full flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-purple-50 rounded-lg transition-colors">
                       <Settings className="w-4 h-4" />
                       마이페이지
                     </button>
                   </Link>
                   <div className="h-px bg-gray-100 my-1" />
-                  <button className="w-full flex items-center gap-3 px-3 py-2 text-sm font-medium text-red-600 hover:bg-red-50 rounded-lg transition-colors">
+                  <button 
+                    onClick={() => setUserDropdown(false)}
+                    className="w-full flex items-center gap-3 px-3 py-2 text-sm font-medium text-red-600 hover:bg-red-50 rounded-lg transition-colors">
                     <LogOut className="w-4 h-4" />
                     로그아웃
                   </button>

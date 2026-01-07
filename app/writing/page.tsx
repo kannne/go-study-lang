@@ -67,7 +67,7 @@ export default function WritingPage() {
                 type="text"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                placeholder="Enter your title..."
+                placeholder="제목을 입력해주세요."
                 className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 outline-none transition-all bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500 text-base"
               />
             </div>
@@ -80,9 +80,9 @@ export default function WritingPage() {
               <textarea
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
-                placeholder="Write about the passage above..."
+                placeholder="내용을 작성해주세요."
                 rows={15}
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 outline-none transition-all bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500 text-base leading-relaxed resize-none font-mono"
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 outline-none transition-all bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500 text-base leading-relaxed resize-none"
               />
             </div>
 

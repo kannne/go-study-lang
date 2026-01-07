@@ -57,8 +57,7 @@ export default function VocabularyPage() {
                       : "border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:border-blue-300"
                   }`}
                 >
-                  <div className="text-sm font-semibold">초급</div>
-                  <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">Beginner</div>
+                  <div className="text-base font-semibold">초급</div>
                 </button>
                 <button
                   onClick={() => setDifficulty("intermediate")}
@@ -68,8 +67,7 @@ export default function VocabularyPage() {
                       : "border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:border-blue-300"
                   }`}
                 >
-                  <div className="text-sm font-semibold">중급</div>
-                  <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">Intermediate</div>
+                  <div className="text-base font-semibold">중급</div>
                 </button>
                 <button
                   onClick={() => setDifficulty("advanced")}
@@ -79,8 +77,7 @@ export default function VocabularyPage() {
                       : "border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:border-blue-300"
                   }`}
                 >
-                  <div className="text-sm font-semibold">고급</div>
-                  <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">Advanced</div>
+                  <div className="text-base font-semibold">고급</div>
                 </button>
               </div>
             </div>
@@ -98,7 +95,7 @@ export default function VocabularyPage() {
                   }`}
                 >
                   <div className="flex items-center gap-3 mb-3">
-                    <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
+                    <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${
                       mode === "study" ? "bg-blue-500" : "bg-gray-300 dark:bg-gray-600"
                     }`}>
                       <BookOpen className="w-5 h-5 text-white" />
@@ -109,7 +106,6 @@ export default function VocabularyPage() {
                       }`}>
                         스터디 모드
                       </div>
-                      <div className="text-xs text-gray-500 dark:text-gray-400">Study Mode</div>
                     </div>
                   </div>
                   <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
@@ -126,7 +122,7 @@ export default function VocabularyPage() {
                   }`}
                 >
                   <div className="flex items-center gap-3 mb-3">
-                    <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
+                    <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${
                       mode === "test" ? "bg-blue-500" : "bg-gray-300 dark:bg-gray-600"
                     }`}>
                       <Clock className="w-5 h-5 text-white" />
@@ -137,7 +133,6 @@ export default function VocabularyPage() {
                       }`}>
                         테스트 모드
                       </div>
-                      <div className="text-xs text-gray-500 dark:text-gray-400">Test Mode</div>
                     </div>
                   </div>
                   <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
@@ -154,14 +149,6 @@ export default function VocabularyPage() {
             >
               {mode === "study" ? "📚 스터디 시작하기" : "⏱️ 테스트 시작하기"}
             </Button>
-
-            {/* Info */}
-            <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4">
-              <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
-                💡 <span className="font-semibold">Tip:</span> 처음 학습하는 단어는 스터디 모드로 익히고,
-                복습할 때는 테스트 모드로 실력을 확인해보세요!
-              </p>
-            </div>
           </CardContent>
         </Card>
       </section>

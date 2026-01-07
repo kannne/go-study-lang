@@ -1,10 +1,10 @@
-# GoLang - LLM 기반 외국어 학습 웹 애플리케이션
+# GoLang - AI 기반 외국어 학습 웹 애플리케이션
 
 > "외국어 공부하러 가자" - Go Stady Language
 
 ## 📖 프로젝트 소개
 
-GoLang은 LLM을 활용한 외국어 학습 웹 애플리케이션입니다.
+GoLang은 AI를 활용한 외국어 학습 웹 애플리케이션입니다.
 
 ### 주요 기능
 - **독해 연습**: Gemini API로 맞춤형 외국어 지문 생성 + 문제 풀이
@@ -13,7 +13,8 @@ GoLang은 LLM을 활용한 외국어 학습 웹 애플리케이션입니다.
 
 ## 🛠️ 기술 스택
 
-- **Frontend & Backend**: Next.js 14 (App Router) + TypeScript
+- **Frontend**: Next.js 14 (App Router) + TypeScript
+- **Backend**: Nest.js 11 + TypeScript
 - **Styling**: Tailwind CSS 3.4.1 + shadcn/ui
 - **Database**: PostgreSQL + Prisma ORM
 - **LLM**: Gemini 2.5 Pro / Flash
@@ -28,16 +29,7 @@ GoLang은 LLM을 활용한 외국어 학습 웹 애플리케이션입니다.
 pnpm run dev
 ```
 
-[http://localhost:3000](http://localhost:3000)에서 확인할 수 있습니다.
-
-### 환경 변수 설정
-
-`.env.local` 파일을 생성하고 다음 내용을 추가하세요:
-
-```env
-DATABASE_URL="postgresql://..."
-GEMINI_API_KEY="your-gemini-api-key"
-```
+[http://localhost:4040](http://localhost:4040)에서 확인할 수 있습니다.
 
 ## 📂 프로젝트 구조
 
