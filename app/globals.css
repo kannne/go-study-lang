@@ -56,4 +56,87 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  /* Japanese Ruby (Furigana) styling */
+  ruby {
+    ruby-position: over;
+  }
+
+  rt {
+    font-size: 0.5em;
+    line-height: 1;
+    letter-spacing: 0.05em;
+  }
+}
+
+@layer utilities {
+  /* Smooth reveal animations */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(2rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out;
+  }
+
+  /* Progress bar shimmer animation */
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  .animate-shimmer {
+    animation: shimmer 2s ease-in-out infinite;
+    background-size: 200% 100%;
+  }
+
+  /* Glassmorphism utilities */
+  .glass {
+    @apply backdrop-blur-xl bg-white/70 border border-white/20;
+  }
+
+  .glass-card {
+    @apply backdrop-blur-xl bg-white/60 border border-white/30 shadow-lg;
+  }
+
+  /* Custom Scrollbar Styles */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(165 180 252) rgb(241 245 249);
+  }
+
+  *::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: rgb(241 245 249);
+    border-radius: 4px;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: rgb(165 180 252);
+    border-radius: 4px;
+    transition: background 0.2s;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background: rgb(129 140 248);
+  }
+
+  *::-webkit-scrollbar-thumb:active {
+    background: rgb(99 102 241);
+  }
 }
