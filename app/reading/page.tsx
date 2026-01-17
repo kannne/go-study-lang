@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { BookOpen, RotateCw } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -11,6 +11,10 @@ export default function ReadingPage() {
   const [isGenerating, setIsGenerating] = useState(false);
   const router = useRouter();
   const { getLanguageName } = useLanguage();
+  
+  useEffect(() => {
+    document.title = "독해 - GoLang";
+  }, []);
 
   const handleGenerate = () => {
     setIsGenerating(true);

@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { PenLine } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -13,6 +13,10 @@ export default function WritingPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
   const { getLanguageName } = useLanguage();
+
+  useEffect(() => {
+    document.title = "작문 - GoLang";
+  }, []);
 
   // Calculate statistics
   const wordCount = content.trim() ? content.trim().split(/\s+/).length : 0;

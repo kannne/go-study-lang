@@ -1,19 +1,45 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { Bell, User, Moon, Sun, LogOut, Settings, BookOpen, PenLine, Library, Languages } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useTheme } from "@/contexts/ThemeContext";
+import { logout } from "@/lib/api";
+
+interface UserInfo {
+  id: string;
+  email: string;
+  nickname: string;
+  picture?: string | null;
+}
 
 export default function Header() {
   const [userDropdown, setUserDropdown] = useState(false);
   const [languageDropdown, setLanguageDropdown] = useState(false);
+  const [user, setUser] = useState<UserInfo | null>(null);
   const pathname = usePathname();
   const { language, setLanguage, getLanguageLabel } = useLanguage();
   const { theme, toggleTheme } = useTheme();
+
+  // localStorage에서 사용자 정보 로드
+  useEffect(() => {
+    const userStr = localStorage.getItem('user');
+    if (userStr) {
+      try {
+        setUser(JSON.parse(userStr));
+      } catch (error) {
+        console.error('Failed to parse user data:', error);
+      }
+    }
+  }, []);
+
+  // 로그아웃 핸들러
+  const handleLogout = async () => {
+    setUserDropdown(false);
+    await logout();
+  };
 
   const getActiveTab = () => {
     if (pathname.startsWith("/reading")) return "reading";
@@ -154,33 +180,47 @@ export default function Header() {
                 setUserDropdown(!userDropdown);
                 setLanguageDropdown(false);
               }}
-              className="flex items-center gap-2 p-2 rounded-lg hover:bg-purple-50 transition-colors group"
+              className="flex items-center gap-2 p-2 rounded-lg hover:bg-purple-50 dark:hover:bg-gray-700 transition-colors group"
             >
-              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-md">
-                <User className="w-4 h-4 text-white" />
-              </div>
+              {user?.picture ? (
+                <img
+                  src={user.picture}
+                  alt={user.nickname}
+                  className="w-8 h-8 rounded-full shadow-md"
+                />
+              ) : (
+                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-md">
+                  <User className="w-4 h-4 text-white" />
+                </div>
+              )}
             </button>
 
             {/* Dropdown Menu */}
             {userDropdown && (
-              <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-2xl border border-purple-100 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
-                <div className="p-3 border-b border-gray-100 bg-gradient-to-br from-indigo-50 to-purple-50">
-                  <p className="text-sm font-bold text-gray-900">민 님</p>
-                  <p className="text-xs text-gray-500">min@example.com</p>
+              <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-purple-100 dark:border-gray-700 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
+                <div className="p-3 border-b border-gray-100 dark:border-gray-700 bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-950/30 dark:to-purple-950/30">
+                  <p className="text-sm font-bold text-gray-900 dark:text-gray-100">
+                    {user?.nickname || '게스트'} 님
+                  </p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">
+                    {user?.email || '로그인이 필요합니다'}
+                  </p>
                 </div>
                 <div className="p-1">
                   <Link href="/mypage">
                     <button
-                      onClick={() => setUserDropdown(false)} 
-                      className="w-full flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-purple-50 rounded-lg transition-colors">
+                      onClick={() => setUserDropdown(false)}
+                      className="w-full flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-purple-50 dark:hover:bg-gray-700 rounded-lg transition-colors"
+                    >
                       <Settings className="w-4 h-4" />
                       마이페이지
                     </button>
                   </Link>
-                  <div className="h-px bg-gray-100 my-1" />
-                  <button 
-                    onClick={() => setUserDropdown(false)}
-                    className="w-full flex items-center gap-3 px-3 py-2 text-sm font-medium text-red-600 hover:bg-red-50 rounded-lg transition-colors">
+                  <div className="h-px bg-gray-100 dark:bg-gray-700 my-1" />
+                  <button
+                    onClick={handleLogout}
+                    className="w-full flex items-center gap-3 px-3 py-2 text-sm font-medium text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/30 rounded-lg transition-colors"
+                  >
                     <LogOut className="w-4 h-4" />
                     로그아웃
                   </button>

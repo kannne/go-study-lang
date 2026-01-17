@@ -23,6 +23,10 @@ export default function VocabularySessionPage() {
   const [correctCount, setCorrectCount] = useState(0);
   const [timeLeft, setTimeLeft] = useState(30);
 
+  useEffect(() => {
+    document.title = "어휘 - GoLang";
+  }, []);
+
   // TODO: Fetch vocabulary data from DB
   const mockVocabulary = [
     {

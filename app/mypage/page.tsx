@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   User,
@@ -13,7 +14,11 @@ import {
   Globe,
 } from "lucide-react";
 
-export default function MyPage() {
+export default function MyPage() {  
+  useEffect(() => {
+    document.title = "마이페이지 - GoLang";
+  }, []);
+
   // Mock data - TODO: Replace with actual user data
   const userProfile = {
     name: "민 님",

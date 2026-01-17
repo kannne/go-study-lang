@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Library, BookOpen, Clock } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -15,6 +15,10 @@ export default function VocabularyPage() {
   const [mode, setMode] = useState<Mode>("study");
   const router = useRouter();
   const { getLanguageName } = useLanguage();
+  
+  useEffect(() => {
+    document.title = "어휘 - GoLang";
+  }, []);
 
   const handleStart = () => {
     const sessionId = crypto.randomUUID();
