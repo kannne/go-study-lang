@@ -11,8 +11,49 @@ import {
   Circle,
 } from "lucide-react";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { apiFetch } from "@/lib/api";
 
 export default function Home() {
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(true);
+  
+  // 로그인 체크
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        // localStorage에 사용자 정보가 있는지 확인
+        const userStr = localStorage.getItem('user');
+        if (!userStr) {
+          // 사용자 정보 없으면 로그인 페이지로
+          router.push('/login');
+          return;
+        }
+
+        // 쿠키로 인증 확인 (apiFetch 사용 → 401 시 자동 Refresh Token 갱신)
+        await apiFetch('/auth/profile');
+
+        // 인증 성공
+        setIsLoading(false);
+      } catch (error) {
+        console.error('Auth check failed:', error);
+        localStorage.removeItem('user');
+        router.push('/login');
+      }
+    };
+
+    checkAuth();
+  }, [router]);
+
+  // 로딩 중이면 빈 화면
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="animate-spin rounded-full h-12 w-12 border-4 border-indigo-600 border-t-transparent" />
+      </div>
+    );
+  }
 
   // Mock data
   const weeklyActivity = [
